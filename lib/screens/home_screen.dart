@@ -1,6 +1,6 @@
 import 'package:clone_profile/component/chat_page.dart';
 import 'package:flutter/material.dart';
-// import 'package:clone_messenger/components/chat_page.dart';
+import 'story_screen.dart'; // Import the StoryScreen
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,39 +13,15 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0; // Track the selected index
   final TextEditingController _searchController = TextEditingController();
 
-   final List<Message> messages = [
-    Message(
-        sender: "Jingleed",
-        text: "Hey there!",
-        imageUrl: 'assets/images/Jingleed.jpg'),
-    Message(
-        sender: "Kero",
-        text: "How's it going?",
-        imageUrl: 'assets/images/Kero.jpg'),
-    Message(
-        sender: "kiriko",
-        text: "See you later!",
-        imageUrl: 'assets/images/kiriko nagi.jpg'),
-    Message(
-        sender: "Neon",
-        text: "Are we still on for lunch?",
-        imageUrl: 'assets/images/Neon.png'),
-    Message(
-        sender: "Neoon",
-        text: "Just finished the project!",
-        imageUrl: 'assets/images/Neoon.png'),
-    Message(
-        sender: "Reze",
-        text: "Did you get my last message?",
-        imageUrl: 'assets/images/Reze color.jpg'),
-    Message(
-        sender: "Rezia",
-        text: "Let’s catch up this weekend!",
-        imageUrl: 'assets/images/Reze4.jpg'),
-    Message(
-        sender: "Yoru",
-        text: "What’s the plan for tonight?",
-        imageUrl: 'assets/images/Yoru3.jpg'),
+  final List<Message> messages = [
+    Message(sender: "Jingleed", text: "Hey there!", imageUrl: 'assets/images/Jingleed.jpg'),
+    Message(sender: "Kero", text: "How's it going?", imageUrl: 'assets/images/Kero.jpg'),
+    Message(sender: "kiriko", text: "See you later!", imageUrl: 'assets/images/kiriko nagi.jpg'),
+    Message(sender: "Neon", text: "Are we still on for lunch?", imageUrl: 'assets/images/Neon.png'),
+    Message(sender: "Neoon", text: "Just finished the project!", imageUrl: 'assets/images/Neoon.png'),
+    Message(sender: "Reze", text: "Did you get my last message?", imageUrl: 'assets/images/Reze color.jpg'),
+    Message(sender: "Rezia", text: "Let’s catch up this weekend!", imageUrl: 'assets/images/Reze4.jpg'),
+    Message(sender: "Yoru", text: "What’s the plan for tonight?", imageUrl: 'assets/images/Yoru3.jpg'),
   ];
 
   final List<String> customMessages = [
@@ -60,7 +36,18 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
-    print("Selected index: $index");
+
+    // Update navigation based on the remaining items
+    if (index == 0) { // If "Chats" tab is tapped
+      print("Selected Chats");
+    } else if (index == 1) { // If "Stories" tab is tapped
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => StoryScreen(),
+        ),
+      );
+    }
   }
 
   // Navigate to ChatScreen
@@ -214,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             borderRadius: BorderRadius.circular(12.0),
                                           ),
                                           child: Text(
-                                            customMessages[index],
+                                            customMessages[index % customMessages.length],
                                             style: const TextStyle(color: Colors.white, fontSize: 12),
                                           ),
                                         ),
@@ -298,11 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Chats',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'People',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.image),
+            icon: Icon(Icons.note),
             label: 'Stories',
           ),
         ],

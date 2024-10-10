@@ -69,6 +69,14 @@ flutter:
     - assets/images/Reze color.jpg
     - assets/images/Reze4.jpg
     - assets/images/Yoru3.jpg
+    - assets/images/story1.jpg
+    - assets/images/story2.jpg
+    - assets/images/story3.jpg
+    - assets/images/story4.jpg
+    - assets/images/story5.jpg
+    - assets/images/story6.jpg
+    - assets/images/story7.jpg
+    - assets/images/story8.jpg
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
